@@ -6,6 +6,8 @@ Uma rede social simplificada construída com **React + TypeScript**, com funcion
 
 ## 📸 Preview
 
+https://github.com/user-attachments/assets/ecf7926b-644d-4f39-8e27-f10e0c2e6316
+
 ---
 
 ## 🚀 Funcionalidades
