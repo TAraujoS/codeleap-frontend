@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+# CodeLeap Network 🧠
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma rede social simplificada construída com **React + TypeScript**, com funcionalidades de criação, edição, deleção e listagem de posts. Este projeto foi desenvolvido como parte de um teste técnico utilizando a API pública da [CodeLeap](https://dev.codeleap.co.uk/careers/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Preview
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Funcionalidades
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Login com username (armazenado localmente)
+- Criação de post com título e conteúdo
+- Edição e exclusão de post (somente pelo autor)
+- Listagem com **infinite scroll**
+- Filtro por texto (título ou conteúdo)
+- Ordenação por mais recentes ou mais antigos
+- Feedback visual com toasts
+- Layout responsivo e estilizado com Tailwind CSS
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧪 Tecnologias
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Query](https://tanstack.com/query/latest)
+- [Axios](https://axios-http.com/)
+- [React Hook Form + Zod](https://react-hook-form.com/)
+- [React Icons](https://react-icons.github.io/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
+- [date-fns](https://date-fns.org/) (formatação de tempo)
+
+---
+
+## 🔗 API
+
+Base da API:  
+`https://dev.codeleap.co.uk/careers/`
+
+- **GET /** → lista de posts (paginada)
+- **POST /** → cria novo post
+- **PATCH /:id/** → atualiza título e conteúdo do post
+- **DELETE /:id/** → exclui post
+
+> ℹ️ Todos os endpoints exigem a `/` no final para evitar CORS.
+
+---
+
+## 📂 Estrutura de Pastas
+
+```bash
+src/
+│
+├── components/
+├── context/
+├── hooks/
+├── pages/
+├── services/
+├── App.tsx
+└── main.tsx
 ```
