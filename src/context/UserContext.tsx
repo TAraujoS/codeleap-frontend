@@ -1,26 +1,42 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type UserContextType = {
   username: string;
   setUsername: (name: string) => void;
+  logout: () => void;
 };
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+const UserContext = createContext<UserContextType>({
+  username: "",
+  setUsername: () => {},
+  logout: () => {},
+});
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [username, setUsername] = useState("");
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [username, setUsernameState] = useState<string>("");
+
+  useEffect(() => {
+    const stored = localStorage.getItem("username");
+    if (stored) setUsernameState(stored);
+  }, []);
+
+  const setUsername = (name: string) => {
+    localStorage.setItem("username", name);
+    setUsernameState(name);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("username");
+    setUsernameState("");
+    toast.success("Logged out!");
+  };
 
   return (
-    <UserContext.Provider value={{ username, setUsername }}>
+    <UserContext.Provider value={{ username, setUsername, logout }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export const useUser = (): UserContextType => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error("useUser must be used within UserProvider");
-  }
-  return context;
-};
+export const useUser = () => useContext(UserContext);
